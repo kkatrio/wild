@@ -32,6 +32,18 @@
       hyphens: auto;
     }
   }
+
+  .home-posts{
+	  margin-top: 10.0rem;
+	  .post-title {
+		margin-bottom: 0.75rem;
+	  }
+  }
+
+  .summary{
+	  display: block;
+  }
+
   .post {
     .post-title {
       margin-bottom: .75em;
@@ -108,7 +120,7 @@
 
 .centered {
   display: flex;
-  align-items: center;
+  /*align-items: center;*/
   justify-content: center;
   .about {
     text-align: center;
@@ -150,6 +162,7 @@
         }
       }
     }
+	margin-top: 3rem;
   }
 
   .error {

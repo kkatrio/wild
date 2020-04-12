@@ -1,14 +1,26 @@
 <section class="container centered">
-  <div class="about">
-    {{ if and (isset .Site.Params "avatarurl") (not (isset .Site.Params "gravatar")) }}
-      {{ with .Site.Params.avatarurl }}
-        <div class="avatar"><img src="{{ . | relURL }}" alt="avatar"></div>
-      {{ end }}
-    {{ end }}
-    {{ with .Site.Params.gravatar }}
-      <div class="avatar"><img src="https://www.gravatar.com/avatar/{{md5 .}}?s=240&d=mp" alt="gravatar"></div>
-    {{ end }}
-    <h1>{{ .Site.Params.author }}</h1>
-    <h2>{{ .Site.Params.info }}</h2>
-  </div>
+	<div class="about">
+	{{ $paginator := .Paginate (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }}
+        {{ range $paginator.Pages }}
+            <article class="home-posts">
+                <h2 class="post-title">
+                    <a href="{{ .RelPermalink }}" class="summary-title-link">{{ .LinkTitle }}</a>
+                </h2>
+                {{ if $.Site.Params.enablePostMetaInHome }}
+                    {{ partial "components/post-meta.html" (dict "Deliver" . "isHome" true) }}
+                {{ end }}
+                <summary class="summary">
+                    {{ $summary := .Summary }}
+                    {{ $summary | safeHTML }}
+                </summary>
+                {{ if .Truncated }}
+                    <div class="read-more-container">
+                        <a href="{{ .RelPermalink }}" class="read-more-link">{{ i18n "readMore" }} »</a>
+                    </div>
+                {{ end }}
+            </article>
+        {{ end }}
+
+  {{ partial "pagination.html" . }}
+	</div>
 </section>
