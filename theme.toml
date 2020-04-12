@@ -1,0 +1,10 @@
+name = "into the wild"
+license = "MIT"
+description = "a theme build into the wild"
+
+min_version = "0.54"
+
+[author]
+  name = ""
+  homepage = ""
+
